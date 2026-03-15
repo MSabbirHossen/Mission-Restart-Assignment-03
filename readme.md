@@ -1,202 +1,184 @@
-# 🦸‍♂️ Assignment 03 — Hero IO
+# 🦸‍♂️ Personal App Store
 
+A modern, responsive web application for discovering, browsing, and managing applications. Built with React and Vite, featuring real-time search, sorting, and local app installation tracking.
 
----
+## 📋 Features
 
+- **Browse Apps**: Explore a curated collection of applications
+- **Search Functionality**: Live search with case-insensitive filtering
+- **Sort & Filter**: Sort apps by downloads (high-low, low-high) and popularity (ratings)
+- **App Details**: View detailed information about each app with charts and reviews
+- **Install Apps**: Install/uninstall apps with localStorage persistence
+- **My Installation**: Track and manage your installed applications
+- **Responsive Design**: Works seamlessly on mobile, tablet, and desktop
+- **Beautiful UI**: Gradient designs, smooth animations, and intuitive navigation
 
-# 🐣 Basic Requirements
+## 🛠 Technologies Used
 
-- Make the Application Responsive for All the Devices
-- Do minimum 5 commits to your github Repository
-- Give a meaning full name to your application
-- Make Sure on Production Application is error Free
-- Add a Readme.md with App Name , Description & Technologies
+- **Frontend Framework**: React 19.2
+- **Build Tool**: Vite 7.2
+- **Styling**: Tailwind CSS 4.1 + DaisyUI 5.5
+- **Routing**: React Router 7.12
+- **Charts**: Recharts 3.6 (for app review distribution)
+- **Icons**: React Icons 5.5
+- **Notifications**: React Toastify 11.0
+- **Package Manager**: npm
 
----
+## 📦 Installation
 
-# 🔧 Main Requirements
+1. Clone the repository:
 
-## 1. 🧱 Layout & Data Design
+```bash
+git clone https://github.com/MSabbirHossen/Personal_App-Store.git
+cd Personal_App-Store
+```
 
-#### Header
+2. Install dependencies:
 
-- The header must include:
-  - A logo.on clicking it user will be navigated to home page.
-  - A navigation bar with links [ `home` , `apps` , `installation` ] and active route indication.
-  - A `Contribution` button as Figma linking to the your GitHub profile.
+```bash
+npm install
+```
 
-#### Footer
+3. Start the development server:
 
-- Design a custom footer using your own creativity and style.
+```bash
+npm run dev
+```
 
-#### Data
+4. Preview production build:
 
-- Create an JSON Array of minimum 12-20 objects for app data using the following structure:
-  ```js
-  {
-    image: string;
-    title: string;
-    companyName: string;
-    id: number;
-    description: string;
-    size: number;
-    reviews: number;
-    ratingAvg: number;
-    downloads: number;
-    ratings: [
-      { name: "1 star"; count: number },
-      { name: "2 star"; count: number },
-      { name: "3 star"; count: number },
-      { name: "4 star"; count: number },
-      { name: "5 star"; count: number }
-    ];
-  }
-  ```
+```bash
+npm run build
+```
 
----
+5. Preview production build:
 
-## 2. 🏠 Home Page
+```bash
+npm run preview
+```
 
-#### Banner
+## 📁 Project Structure
 
-- Must contain a center-aligned heading, text, and two buttons.
-- “App Store” button will redirect to the App Store.
-- “Play Store” button will redirect to the Play Store.
+src/
+├── components/
+│ ├── AppCard/ # Individual app card component
+│ ├── Header/ # Header with banner
+│ ├── Navbar/ # Navigation bar with active route indicator
+│ ├── Footer/ # Footer with social links
+│ ├── Home/ # Home page
+│ └── Root/ # Root layout component
+├── pages/
+│ ├── AllApps/ # All applications page with search & sort
+│ ├── AppDetails/ # Detailed app information page
+│ ├── Banner/ # Home page banner
+│ ├── Installation/ # My installed apps page
+│ ├── TrendingApps/ # Trending apps section
+│ ├── TrustSection/ # Trust/stats section
+│ ├── Route/ # Route configuration
+│ └── Error/ # Error pages
+├── utility/
+│ └── localStorage.js # LocalStorage helper functions
+└── main.jsx # Application entry point
 
-#### States Section
+## 🎯 Key Features Explained
 
-- Must contain three state cards as shown in Figma.
+### Search
 
-#### Top Apps Section
+- Real-time search filters apps by title
+- Case-insensitive matching
+- Shows "No App Found" when no results
 
-- Display eight apps in a four-column layout.
-- Each app card should display:
-  - App title
-  - Image
-  - Download count
-  - Average rating
-- Clicking on a card should navigate the user to the App Details page.
-- Include a “Show All” button that navigates to the All Apps page.
+### Sort
 
----
+- Most Popular: Sorts by average rating (highest first)
+- Downloads: High to Low: Descending order
+- Downloads: Low to High: Ascending order
 
-## 3.📱 All Apps Page
+### App Installation
 
-#### Title Section
+- Click "Install Now" button to install apps
+- Button changes to "✓ Installed" when app is installed
+- Apps are saved to localStorage for persistence
+- View all installed apps in "My Installation" page
 
-- Include a title and subtitle following the Figma design.
+### Responsive Design
 
-#### Search and States
+- Mobile-first approach
+- Breakpoints for tablet (md) and desktop (lg)
+- Touch-friendly UI elements
+- Smooth animations and transitions
 
-- Display the total number of apps on the left and a search bar on the right.
-- `Implement live search functionality`
-  - filters apps by title as the user types.
-  - Search will be case-insensitive
-  - If no app matches, display a “No App Found” message.
+### 🚀 Deployment
 
-#### App Section
+This project can be deployed to:
 
-- Display all apps from the JSON data.
-- Each app card should include:
-  - App title
-  - Image
-  - Download count
-  - Average rating
-- Clicking on an app card should navigate to the App Details page.
+- Vercel: npm run build then push to GitHub
+- Netlify: Connect GitHub repository and set build command to npm run build
+- Cloudflare Pages: Similar to Netlify
 
----
+## 📝 API Data
 
-## 4.📊 App Details Page
+Apps data is stored in appsData.json with the following structure:
 
-#### App Information
+```json
+{
+  "id": number,
+  "image": string,
+  "title": string,
+  "website": string,
+  "companyName": string,
+  "description": string,
+  "size": number,
+  "reviews": number,
+  "ratingAvg": number,
+  "downloads": number,
+  "ratings": [
+    { "name": "1 star", "count": number },
+    ...
+  ]
+}
+```
 
-- Show app image on the left.
-- Display app details such as title, rating, downloads, reviews.
-- Include an `Install button`:
-  - When clicked, it becomes disabled and the text changes to `Installed`.
-  - Show a Success Toast after App installed
+## 📱 Browser Support
 
-#### App Review Chart
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)
+- Mobile browsers (iOS Safari, Chrome Mobile)
 
-- Implement a responsive chart using the **Recharts** library.
-- Visualize the app’s review data as shown in the Figma design.
+## 👥 Contributing
 
-#### App Description
+Contributions are welcome! Please feel free to submit a Pull Request.
 
-- Show the app details in description section as per Figma layout.
+## 📄 License
 
----
+This project is open source and available under the MIT License.
 
-## 5. Error Page & Others
+## 📞 Contact & Support
 
-- Create a custom error page for invalid routes.
-
-- Show a loading animation during: `Challenge Part`  
-
-  - Page navigation. 
-  - Search operation.
-
-- Show a Relevant Not Found message app not found in app details section.
-
-- Ensure that reloading any route after deployment does not cause an error.
-
----
-
-# Challenge Requirement
-
-### LocalStorage Features
-
-#### App Installation
-
-- When the “Install” button is clicked:
-  - Save the app to localStorage.
-  - If the app is already installed, show a disabled button with the text `Installed`.
-
-#### My Installation Page
-
-- Create a page named “My Installation” following the Figma design.
-- Display all installed apps as cards.
-- Include an Uninstall button:
-  - Clicking it
-    - removes the app from both the UI and localStorage.
-    - Show an Toast with some relevant message
-
----
-
-### Sort by Downloads
-
-- Implement a dropdown for sorting apps by download count.
-- The dropdown must include:
-  - **High-Low:** Sort apps in descending order by downloads.
-  - **Low-High:** Sort apps in ascending order by downloads.
+- GitHub: [Personal_App-Store](https://github.com/MSabbirHossen/Personal_App-Store.git)
+- Report issues or suggest features via GitHub Issues
+<hr>
+Made with ❤️ by: [Part_Time_Coder](https://www.linkedin.com/in/parttimecoder) and [MS Hossen](https://www.linkedin.com/in/ms-hossen)
 
 ---
 
-### Loading Animation
+## **FIX 5: Update vite.config.js for Production Routing**
 
-- Show a loading animation during: 
-  - Page navigation. 
-  - Search operation
+```javascript
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import tailwindcss from "@tailwindcss/vite";
 
----
-
-## 🚀 Deployment
-
-- Deploy the project to Cloudflare / Netlify / Vercel.
-- Reloading from any route must work correctly without showing a 404 error.
-
----
-
-## 🔗 Submission Guideline
-
-- **Live Link :** YOUR_DEPLOYED_URL_HERE
-- **GitHub Repository:** YOUR_REPO_URL_HERE
-
-
-### 📅 Deadline For 60 marks: 18 March , 2026 (11:59 pm ⏱️)
-
-### 📅 Deadline For 50 marks : 26 March , 2026 (11:59 pm⏱️)
-
-### 📅 Deadline For 30 marks: Since this is the final assignment, there will be no 30-mark deadline. You must submit it within the 50-mark deadline to qualify for the reward.
-
-
+export default defineConfig({
+  plugins: [react(), tailwindcss()],
+  server: {
+    historyApiFallback: true,
+  },
+  build: {
+    outDir: "dist",
+    sourcemap: false,
+  },
+});
+```
