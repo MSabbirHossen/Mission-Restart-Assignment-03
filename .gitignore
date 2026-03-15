@@ -11,8 +11,8 @@ lerna-debug.log*
 Hero IO.fig
 AppRequirement.md
 README.md
-./ui/
-appsData.json
+./ui
+
 localStorage.js
 
 node_modules
